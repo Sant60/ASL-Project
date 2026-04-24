@@ -1,232 +1,315 @@
-# 🤟 American Sign Language Recognition System
-### ASL to Text Converter
+# American Sign Language Recognition System
 
-A Python-based machine learning and computer vision project that enables seamless communication for individuals with speech and hearing impairments. The system translates American Sign Language (ASL) hand gestures into English alphabets in real time using a webcam, computer vision techniques, and a trained ML model.
+An accessibility-focused computer vision project that recognizes American Sign Language (ASL) hand signs from a webcam feed and converts them into text in real time.
 
----
+This repository is a strong fit for GSSoC contributors who want to work on Python, Flask, computer vision, machine learning, UI improvements, documentation, and accessibility-driven open source.
 
-## 🎯 Problem Statement
+## Overview
 
-Millions of individuals rely on sign language for communication, yet most people are unfamiliar with it. This creates challenges in daily interactions — education, workplaces, and public services alike.
+The project uses a webcam, hand detection, and a trained classification model to identify ASL alphabet gestures. The current application serves a Flask interface, streams webcam frames, predicts letters, and builds a word progressively from recognized signs.
 
-This project bridges the communication gap by creating an AI-powered tool that converts sign language into readable text.
+## Why This Project Matters
 
----
+Communication barriers still exist for people who rely on sign language in classrooms, workplaces, and everyday interactions. This project aims to reduce that gap by building a practical ASL-to-text interface that is approachable, extendable, and open to community collaboration.
 
-## 🚀 Features
+## Current Features
 
-- ✋ Real-time hand gesture detection using webcam
-- 🔤 ASL to English alphabet conversion
-- 🧠 Machine learning–based prediction system
-- 🎯 Accurate hand tracking using MediaPipe
-- 💻 Simple and interactive Flask-based UI
-- ⚡ Lightweight and efficient implementation
-- 📊 Model training and dataset collection support
+- Real-time ASL alphabet recognition using a webcam
+- Flask-based web interface
+- Hand detection with `cvzone` and OpenCV
+- Model inference using a saved Keras classifier
+- Automatic letter accumulation into a word buffer
+- Manual controls to add, undo, and reset letters
+- Dataset collection script for new samples
+- Model training script for custom experiments
 
----
+## Tech Stack
 
-## 🛠️ Tech Stack
-
-| Category | Tools / Libraries |
+| Area | Tools |
 |---|---|
 | Language | Python |
-| Machine Learning | TensorFlow, Keras |
-| Computer Vision | OpenCV, MediaPipe, cvzone |
-| Data Processing | NumPy, SciPy |
-| Visualisation | Matplotlib |
 | Backend | Flask |
-| Deployment | Procfile, runtime.txt |
+| Computer Vision | OpenCV, cvzone |
+| ML / Deep Learning | TensorFlow, Keras |
+| Data Handling | NumPy |
+| Deployment Support | Procfile, runtime.txt |
 
----
+## How It Works
 
-## 📂 Project Structure
+The application follows this pipeline:
 
+1. Capture live webcam frames.
+2. Detect a hand region using `HandDetector`.
+3. Normalize the cropped hand image onto a white canvas.
+4. Run inference through the trained classifier in `Model/`.
+5. Display the predicted letter and confidence.
+6. Append letters into a word after the same sign remains stable for a few seconds.
+
+## Repository Structure
+
+```text
+ASL-Project/
+|-- app.py                 # Flask app and real-time prediction pipeline
+|-- dataCollection.py      # Utility to capture hand sign images for a class
+|-- train_model.py         # Model training script
+|-- requirements.txt       # Python dependencies
+|-- Procfile               # Deployment process file
+|-- runtime.txt            # Python runtime version
+|-- Data/                  # Collected sign image data
+|-- Model/                 # Trained model files and labels
+|-- static/                # CSS, images, frontend static assets
+|-- templates/             # HTML templates for Flask UI
+|-- README.md
 ```
-ASL-Recognition/
-│── Data/                 # Dataset used for training the model
-│── Model/                # Saved trained models
-│── static/Images/        # Images and static assets for UI
-│── templates/            # HTML templates for Flask frontend
-│── app.py                # Main application (runs real-time detection)
-│── dataCollection.py     # Script to collect gesture dataset
-│── train_model.py        # Script to train ML model
-│── requirements.txt      # Project dependencies
-│── runtime.txt           # Python runtime version (deployment)
-│── Procfile              # Deployment configuration (Heroku)
-│── .gitignore
-│── README.md
-```
 
----
+## Local Setup
 
-## ⚙️ Installation Guide
-
-### 1️⃣ Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/your-username/asl-recognition.git
-cd asl-recognition
+git clone https://github.com/Sant60/ASL-Project.git
+cd ASL-Project
 ```
 
-### 2️⃣ Create Virtual Environment (Recommended)
+### 2. Create a virtual environment
+
+On Windows:
 
 ```bash
 python -m venv venv
-source venv/bin/activate     # Linux/Mac
-venv\Scripts\activate        # Windows
+venv\Scripts\activate
 ```
 
-### 3️⃣ Install Dependencies
+On macOS/Linux:
+
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 3. Install dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
----
-
-## ▶️ Usage
-
-### 🔹 Run the Application
+### 4. Run the application
 
 ```bash
 python app.py
 ```
 
-- Webcam will open
-- Show hand gestures in front of camera
-- Predicted alphabet will be displayed in real time
+Then open your browser to:
 
-### 🔹 Collect Dataset
+```text
+http://127.0.0.1:5000/
+```
+
+## Dataset Collection
+
+Use the collector script to capture hand-sign samples for a target class.
 
 ```bash
 python dataCollection.py
 ```
 
-- Captures hand gesture images
-- Stores data in `Data/` folder
+Notes:
 
-### 🔹 Train the Model
+- The current script saves images into `Data/Y`.
+- Press `s` to save a processed frame.
+- Make sure the target class folder exists before collecting data.
+- A webcam is required.
+
+## Model Training
+
+Train a classification model on your dataset:
 
 ```bash
 python train_model.py
 ```
 
-- Uses dataset to train model
-- Saves trained model in `Model/`
+Current training behavior:
 
----
+- The script expects a dataset directory configured in `train_model.py`.
+- It saves `keras_model.h5` and `labels.txt` after training.
+- If you want the Flask app to use the trained files directly, place them inside the `Model/` directory or update the paths in `app.py`.
 
-## 🧠 How It Works
+## Prerequisites
 
-The system follows a structured pipeline:
+- Python 3.8 or above
+- Working webcam
+- Basic familiarity with Python and Git for contributors
 
+## Known Gaps and Improvement Opportunities
+
+This repo already works as a useful base, but there are several places where contributors can make high-impact improvements:
+
+- Improve prediction accuracy and robustness
+- Expand from alphabet recognition to words and sentences
+- Add better error handling around webcam and prediction failures
+- Improve UI/UX and accessibility of the frontend
+- Add tests, linting, and CI workflows
+- Refactor scripts for configurability and maintainability
+- Improve dataset organization and augmentation
+- Add deployment and containerization support
+- Document model performance and evaluation metrics
+
+## GSSoC Contribution Guide
+
+We warmly welcome GSSoC contributors of all experience levels.
+
+### Good First Contributions
+
+- Improve project documentation
+- Fix typos, broken instructions, or unclear setup steps
+- Add code comments in complex areas
+- Clean up Python naming, formatting, or structure
+- Improve templates and frontend styling
+- Add helpful issue templates or pull request templates
+
+### Intermediate Contributions
+
+- Add modular utility functions to reduce duplication
+- Improve prediction stability logic
+- Add keyboard/UI controls for text editing actions
+- Improve model-loading and configuration management
+- Add dataset validation or augmentation scripts
+- Add responsiveness and accessibility improvements to the frontend
+
+### Advanced Contributions
+
+- Redesign the recognition pipeline for better accuracy
+- Add sentence building, autocorrect, or language modeling
+- Support dynamic gestures and not just static alphabets
+- Add speech synthesis from predicted text
+- Build an evaluation dashboard or benchmark workflow
+- Dockerize the project and prepare production-ready deployment
+
+## Contribution Workflow
+
+1. Fork the repository.
+2. Clone your fork locally.
+3. Create a new branch:
+
+```bash
+git checkout -b feature/your-feature-name
 ```
-Hand Detection  →  Feature Extraction  →  Model Prediction  →  Output Display
+
+4. Make your changes.
+5. Test your work locally.
+6. Commit with a clear message:
+
+```bash
+git commit -m "feat: improve webcam prediction stability"
 ```
 
-| Step | Description |
-|---|---|
-| **Hand Detection** | MediaPipe detects hand landmarks (21 key points) |
-| **Feature Extraction** | Landmark coordinates are processed into usable features |
-| **Model Prediction** | Trained TensorFlow/Keras model predicts the alphabet |
-| **Output Display** | Result is shown via Flask UI in real time |
+7. Push your branch:
 
----
+```bash
+git push origin feature/your-feature-name
+```
 
-## 🧩 Contribution Guidelines
+8. Open a pull request with a clear summary, screenshots if relevant, and testing notes.
 
-We welcome contributors of all skill levels! 🚀
+## Pull Request Checklist
 
-### 🔹 Steps to Contribute
+Before opening a PR, please make sure:
 
-1. Fork the repository
-2. Create a new branch
-   ```bash
-   git checkout -b feature-name
-   ```
-3. Make your changes
-4. Commit your work
-   ```bash
-   git commit -m "Added feature"
-   ```
-5. Push to GitHub
-   ```bash
-   git push origin feature-name
-   ```
-6. Open a Pull Request
+- Your code runs locally
+- You tested the affected flow where possible
+- Your changes are focused and easy to review
+- Documentation is updated if behavior changed
+- Commit messages are meaningful
+- New contributors keep PRs small and well-scoped when possible
 
-### 🏷️ Contribution Areas
+## Suggested Issue Labels
 
-- 🔹 Improve model accuracy and performance
-- 🔹 Add word and sentence prediction
-- 🔹 Enhance UI/UX (Flask templates & styling)
-- 🔹 Optimize real-time processing speed
-- 🔹 Expand dataset and apply augmentation
-- 🔹 Add new features (voice output, suggestions)
-- 🔹 Improve code structure and documentation
+Maintainers may want to use labels like:
 
-### 🟢 Good First Issues
+- `gssoc`
+- `good first issue`
+- `beginner friendly`
+- `documentation`
+- `bug`
+- `enhancement`
+- `help wanted`
+- `ml`
+- `frontend`
+- `backend`
 
-- Add comments to code
-- Improve README/documentation
-- Fix minor bugs in `app.py`
-- UI improvements in `templates/`
-- Code refactoring
+## Coding Expectations
 
----
+- Follow readable and consistent Python style
+- Prefer small, focused functions
+- Avoid unnecessary breaking changes
+- Keep accessibility and usability in mind
+- Document assumptions when changing model or data behavior
 
-## 📊 Future Enhancements
+## Testing Suggestions for Contributors
 
-- 🔊 Text-to-speech conversion
-- 🧾 Full sentence generation
-- 🌐 Web deployment with live hosting
-- 📱 Mobile application integration
-- 🤖 Support for dynamic gestures (not just alphabets)
-- 🌍 Multi-language support
+The project does not yet have a formal automated test suite, so contributors should include manual verification notes such as:
 
----
+- App launches successfully with `python app.py`
+- Webcam feed renders correctly
+- Prediction overlay appears without crashing
+- Word buffer controls behave as expected
+- Training script runs with the intended dataset path
 
-## 🧪 Requirements
+Adding automated tests is itself a valuable contribution.
 
-- Python 3.8+
-- Webcam
-- Basic knowledge of Python *(for contributors)*
+## Roadmap Ideas
 
----
+- Better model versioning inside `Model/`
+- Config-driven dataset and model paths
+- Safer exception handling in the frame generator
+- Prediction smoothing and confidence thresholds
+- Multi-hand or multi-sign support
+- Sentence suggestions and text-to-speech
+- Hosted demo or packaged desktop app
 
-## 🤝 Code of Conduct
+## Screenshots and Demo
 
-- Be respectful and inclusive
-- Follow clean coding practices
-- Write meaningful commit messages
-- Ensure code readability and maintainability
+If you are a maintainer, consider adding:
 
----
+- UI screenshots
+- Sample prediction GIFs
+- Demo video links
+- Model accuracy snapshots
 
-## 📜 License
+These help contributors understand the expected behavior faster.
 
-This project is licensed under the **MIT License**.
+## Maintainer Notes
 
----
+If you are preparing this repository for GSSoC, adding the following will make contributions smoother:
 
-## 🌟 Why Contribute?
+- A `LICENSE` file
+- `CODE_OF_CONDUCT.md`
+- `CONTRIBUTING.md`
+- issue templates
+- pull request template
+- project board or roadmap
+- labels for contributor-friendly tasks
 
-- Work on a real-world AI + accessibility project
-- Gain experience in Computer Vision & Machine Learning
-- Beginner-friendly with advanced contribution scope
-- Make a meaningful social impact
+## Acknowledgements
 
----
+This project builds on the open-source ecosystem around:
 
-## 🙌 Acknowledgements
+- Flask
+- OpenCV
+- TensorFlow / Keras
+- cvzone
+- the broader accessibility and sign-language-tech community
 
-- Open-source community
-- Contributors and maintainers
-- Libraries: TensorFlow, OpenCV, MediaPipe
+## License
 
----
+No license file is currently visible in the repository root. If you want outside contributors to reuse and contribute confidently, adding an explicit open-source license is strongly recommended.
 
-## 📬 Contact
+## Support
 
-For suggestions, issues, or collaboration:
-👉 Open an issue or discussion in the repository
+If you want to contribute but are not sure where to begin:
+
+- open an issue with your question
+- ask to be assigned a beginner-friendly task
+- propose documentation, testing, or UI improvements
+
+Contributions that improve usability, accessibility, reliability, and documentation are just as valuable as model improvements.
