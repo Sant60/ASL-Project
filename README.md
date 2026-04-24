@@ -1,33 +1,47 @@
-# American Sign Language Recognition System (ASL to Text Converter)
+# 🤟 American Sign Language Recognition System
+### ASL to Text Converter
 
-The American Sign Language Recognition System is a Python-based machine learning and computer vision project aimed at enabling seamless communication for individuals with speech and hearing impairments. Communication barriers often arise because sign language is not widely understood. This project addresses that issue by translating American Sign Language (ASL) hand gestures into English alphabets in real time.
+A Python-based machine learning and computer vision project that enables seamless communication for individuals with speech and hearing impairments. The system translates American Sign Language (ASL) hand gestures into English alphabets in real time using a webcam, computer vision techniques, and a trained ML model.
 
-Using a webcam, the system captures hand movements, processes them using computer vision techniques, and predicts the corresponding alphabet through a trained machine learning model. These alphabets can then be combined to form words and sentences, making interaction more inclusive and effective.
+---
 
-🎯 Problem Statement
+## 🎯 Problem Statement
 
-Millions of individuals rely on sign language for communication, yet most people are unfamiliar with it. This leads to challenges in daily interactions such as education, workplaces, and public services.
+Millions of individuals rely on sign language for communication, yet most people are unfamiliar with it. This creates challenges in daily interactions — education, workplaces, and public services alike.
 
-This project aims to bridge the communication gap by creating an AI-powered tool that converts sign language into readable text.
+This project bridges the communication gap by creating an AI-powered tool that converts sign language into readable text.
 
-🚀 Features
-✋ Real-time hand gesture detection using webcam
-🔤 ASL to English alphabet conversion
-🧠 Machine learning–based prediction system
-🎯 Accurate hand tracking using MediaPipe
-💻 Simple and interactive Flask-based UI
-⚡ Lightweight and efficient implementation
-📊 Model training and dataset collection support
-🛠️ Tech Stack
-Category	Tools / Libraries
-Language	Python
-Machine Learning	TensorFlow, Keras
-Computer Vision	OpenCV, MediaPipe, cvzone
-Data Processing	NumPy, SciPy
-Visualisation	Matplotlib
-Backend	Flask
-Deployment	Procfile, runtime.txt
-📂 Project Structure
+---
+
+## 🚀 Features
+
+- ✋ Real-time hand gesture detection using webcam
+- 🔤 ASL to English alphabet conversion
+- 🧠 Machine learning–based prediction system
+- 🎯 Accurate hand tracking using MediaPipe
+- 💻 Simple and interactive Flask-based UI
+- ⚡ Lightweight and efficient implementation
+- 📊 Model training and dataset collection support
+
+---
+
+## 🛠️ Tech Stack
+
+| Category | Tools / Libraries |
+|---|---|
+| Language | Python |
+| Machine Learning | TensorFlow, Keras |
+| Computer Vision | OpenCV, MediaPipe, cvzone |
+| Data Processing | NumPy, SciPy |
+| Visualisation | Matplotlib |
+| Backend | Flask |
+| Deployment | Procfile, runtime.txt |
+
+---
+
+## 📂 Project Structure
+
+```
 ASL-Recognition/
 │── Data/                 # Dataset used for training the model
 │── Model/                # Saved trained models
@@ -41,100 +55,178 @@ ASL-Recognition/
 │── Procfile              # Deployment configuration (Heroku)
 │── .gitignore
 │── README.md
-⚙️ Installation Guide
-1️⃣ Clone the Repository
+```
+
+---
+
+## ⚙️ Installation Guide
+
+### 1️⃣ Clone the Repository
+
+```bash
 git clone https://github.com/your-username/asl-recognition.git
 cd asl-recognition
-2️⃣ Create Virtual Environment (Recommended)
+```
+
+### 2️⃣ Create Virtual Environment (Recommended)
+
+```bash
 python -m venv venv
 source venv/bin/activate     # Linux/Mac
 venv\Scripts\activate        # Windows
-3️⃣ Install Dependencies
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
-▶️ Usage
-🔹 Run the Application
+```
+
+---
+
+## ▶️ Usage
+
+### 🔹 Run the Application
+
+```bash
 python app.py
-Webcam will open
-Show hand gestures in front of camera
-Predicted alphabet will be displayed in real time
-🔹 Collect Dataset
+```
+
+- Webcam will open
+- Show hand gestures in front of camera
+- Predicted alphabet will be displayed in real time
+
+### 🔹 Collect Dataset
+
+```bash
 python dataCollection.py
-Captures hand gesture images
-Stores data in Data/ folder
-🔹 Train the Model
+```
+
+- Captures hand gesture images
+- Stores data in `Data/` folder
+
+### 🔹 Train the Model
+
+```bash
 python train_model.py
-Uses dataset to train model
-Saves trained model in Model/
-🧠 How It Works
+```
+
+- Uses dataset to train model
+- Saves trained model in `Model/`
+
+---
+
+## 🧠 How It Works
 
 The system follows a structured pipeline:
 
-Hand Detection
-MediaPipe detects hand landmarks (21 key points)
-Feature Extraction
-Landmark coordinates are processed into usable features
-Model Prediction
-Trained TensorFlow/Keras model predicts the alphabet
-Output Display
-Result is shown via Flask UI in real time
-🧩 Contribution Guidelines
+```
+Hand Detection  →  Feature Extraction  →  Model Prediction  →  Output Display
+```
 
-We welcome contributors of all skill levels 🚀
+| Step | Description |
+|---|---|
+| **Hand Detection** | MediaPipe detects hand landmarks (21 key points) |
+| **Feature Extraction** | Landmark coordinates are processed into usable features |
+| **Model Prediction** | Trained TensorFlow/Keras model predicts the alphabet |
+| **Output Display** | Result is shown via Flask UI in real time |
 
-🔹 Steps to Contribute
-Fork the repository
-Create a new branch
-git checkout -b feature-name
-Make your changes
-Commit your work
-git commit -m "Added feature"
-Push to GitHub
-git push origin feature-name
-Open a Pull Request
-🏷️ Contribution Areas
-🔹 Improve model accuracy and performance
-🔹 Add word and sentence prediction
-🔹 Enhance UI/UX (Flask templates & styling)
-🔹 Optimize real-time processing speed
-🔹 Expand dataset and apply augmentation
-🔹 Add new features (voice output, suggestions)
-🔹 Improve code structure and documentation
-🟢 Good First Issues
-Add comments to code
-Improve README/documentation
-Fix minor bugs in app.py
-UI improvements in templates/
-Code refactoring
-📊 Future Enhancements
-🔊 Text-to-speech conversion
-🧾 Full sentence generation
-🌐 Web deployment with live hosting
-📱 Mobile application integration
-🤖 Support for dynamic gestures (not just alphabets)
-🌍 Multi-language support
-🧪 Requirements
-Python 3.8+
-Webcam
-Basic knowledge of Python (for contributors)
-🤝 Code of Conduct
-Be respectful and inclusive
-Follow clean coding practices
-Write meaningful commit messages
-Ensure code readability and maintainability
-📜 License
+---
 
-This project is licensed under the MIT License.
+## 🧩 Contribution Guidelines
 
-🌟 Why Contribute?
-Work on a real-world AI + accessibility project
-Gain experience in Computer Vision & Machine Learning
-Beginner-friendly with advanced contribution scope
-Make a meaningful social impact
-🙌 Acknowledgements
-Open-source community
-Contributors and maintainers
-Libraries: TensorFlow, OpenCV, MediaPipe
-📬 Contact
+We welcome contributors of all skill levels! 🚀
+
+### 🔹 Steps to Contribute
+
+1. Fork the repository
+2. Create a new branch
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Make your changes
+4. Commit your work
+   ```bash
+   git commit -m "Added feature"
+   ```
+5. Push to GitHub
+   ```bash
+   git push origin feature-name
+   ```
+6. Open a Pull Request
+
+### 🏷️ Contribution Areas
+
+- 🔹 Improve model accuracy and performance
+- 🔹 Add word and sentence prediction
+- 🔹 Enhance UI/UX (Flask templates & styling)
+- 🔹 Optimize real-time processing speed
+- 🔹 Expand dataset and apply augmentation
+- 🔹 Add new features (voice output, suggestions)
+- 🔹 Improve code structure and documentation
+
+### 🟢 Good First Issues
+
+- Add comments to code
+- Improve README/documentation
+- Fix minor bugs in `app.py`
+- UI improvements in `templates/`
+- Code refactoring
+
+---
+
+## 📊 Future Enhancements
+
+- 🔊 Text-to-speech conversion
+- 🧾 Full sentence generation
+- 🌐 Web deployment with live hosting
+- 📱 Mobile application integration
+- 🤖 Support for dynamic gestures (not just alphabets)
+- 🌍 Multi-language support
+
+---
+
+## 🧪 Requirements
+
+- Python 3.8+
+- Webcam
+- Basic knowledge of Python *(for contributors)*
+
+---
+
+## 🤝 Code of Conduct
+
+- Be respectful and inclusive
+- Follow clean coding practices
+- Write meaningful commit messages
+- Ensure code readability and maintainability
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**.
+
+---
+
+## 🌟 Why Contribute?
+
+- Work on a real-world AI + accessibility project
+- Gain experience in Computer Vision & Machine Learning
+- Beginner-friendly with advanced contribution scope
+- Make a meaningful social impact
+
+---
+
+## 🙌 Acknowledgements
+
+- Open-source community
+- Contributors and maintainers
+- Libraries: TensorFlow, OpenCV, MediaPipe
+
+---
+
+## 📬 Contact
 
 For suggestions, issues, or collaboration:
 👉 Open an issue or discussion in the repository
