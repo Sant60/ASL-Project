@@ -1,6 +1,6 @@
 # American Sign Language Recognition System
 
-An accessibility-focused computer vision project that recognizes American Sign Language (ASL) hand signs from a webcam feed and converts them into text in real time.
+An accessibility-focused computer vision project that recognises American Sign Language (ASL) hand signs from a webcam feed and converts them into text in real time.
 
 This repository is a strong fit for GSSoC contributors who want to work on Python, Flask, computer vision, machine learning, UI improvements, documentation, and accessibility-driven open source.
 
@@ -243,7 +243,7 @@ Maintainers may want to use labels like:
 - Prefer small, focused functions
 - Avoid unnecessary breaking changes
 - Keep accessibility and usability in mind
-- Document assumptions when changing model or data behavior
+- Document assumptions when changing model or data behaviour
 
 ## Testing Suggestions for Contributors
 
@@ -255,7 +255,7 @@ The project does not yet have a formal automated test suite, so contributors sho
 - Word buffer controls behave as expected
 - Training script runs with the intended dataset path
 
-Adding automated tests is itself a valuable contribution.
+Adding automated tests is a valuable contribution in itself.
 
 ## Roadmap Ideas
 
@@ -268,8 +268,6 @@ Adding automated tests is itself a valuable contribution.
 - Hosted demo or packaged desktop app
 
 ## Screenshots and Demo
-
-If you are a maintainer, consider adding:
 
 - UI screenshots
 - Sample prediction GIFs
@@ -300,15 +298,16 @@ This project builds on the open-source ecosystem around:
 - cvzone
 - the broader accessibility and sign-language-tech community
 
-## License
+// ## License
 
-No license file is currently visible in the repository root. If you want outside contributors to reuse and contribute confidently, adding an explicit open-source license is strongly recommended.
+// No license file is currently added. If you want outside contributors to reuse and contribute confidently, it is strongly recommended that you 
+// add an explicit open-source license.
 
 ## Support
 
 If you want to contribute but are not sure where to begin:
 
-- open an issue with your question
+- Open an issue with your question
 - ask to be assigned a beginner-friendly task
 - propose documentation, testing, or UI improvements
 
