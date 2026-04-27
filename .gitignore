@@ -2,8 +2,10 @@
 __pycache__/
 *.pyc
 
-# Ignore virtual environment
+# Ignore virtual environments
+.venv/
 venv/
 
-# Ignore JetBrains IDE files (like PyCharm)
+# Ignore IDE files
 .idea/
+.vscode/
