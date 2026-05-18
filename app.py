@@ -34,6 +34,7 @@ word = ""
 last_letter = ""
 letter_start_time = None
 auto_add_delay = 5
+CONFIDENCE_THRESHOLD = 0.70  # Minimum 70% confidence required
 
 
 @app.route('/')
@@ -90,9 +91,13 @@ def predict():
             imgCrop = img[y1:y2, x1:x2]
 
             if imgCrop.size == 0:
-
+                last_letter = ""
+                letter_start_time = None
                 return jsonify({
-                    "success": False
+                    "success": True,
+                    "letter": "Waiting...",
+                    "confidence": 0.0,
+                    "word": word
                 })
 
             aspectRatio = h / w
@@ -137,43 +142,51 @@ def predict():
             )
 
             current_letter = labels[index]
-
             confidence = prediction[index]
 
-            # Auto add letter logic
-            if current_letter == last_letter:
+            if confidence >= CONFIDENCE_THRESHOLD:
+                # Auto add letter logic
+                if current_letter == last_letter:
+                    if (
+                        letter_start_time and
+                        time.time() - letter_start_time >= auto_add_delay
+                    ):
+                        word += current_letter
+                        letter_start_time = None
+                        last_letter = ""
+                else:
+                    last_letter = current_letter
+                    letter_start_time = time.time()
 
-                if (
-                    letter_start_time and
-                    time.time() - letter_start_time >= auto_add_delay
-                ):
-
-                    word += current_letter
-
-                    letter_start_time = None
-                    last_letter = ""
-
+                return jsonify({
+                    "success": True,
+                    "letter": current_letter,
+                    "confidence": float(confidence),
+                    "word": word
+                })
             else:
-
-                last_letter = current_letter
-                letter_start_time = time.time()
-
-            return jsonify({
-                "success": True,
-                "letter": current_letter,
-                "confidence": float(confidence),
-                "word": word
-            })
+                # Reset tracking if confidence is too low (e.g., hand transition)
+                last_letter = ""
+                letter_start_time = None
+                return jsonify({
+                    "success": True,
+                    "letter": "Unsure",
+                    "confidence": float(confidence),
+                    "word": word
+                })
 
         else:
-
             current_letter = ""
             confidence = 0.0
             last_letter = ""
             letter_start_time = None
 
+            # Return success: True so the frontend updates to "Waiting..."
             return jsonify({
-                "success": False
+                "success": True,
+                "letter": "Waiting...",
+                "confidence": 0.0,
+                "word": word
             })
 
     except Exception as e:
