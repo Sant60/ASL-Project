@@ -376,8 +376,12 @@
 
             if(data.success){
 
-                currentLetter.textContent =
-                    `${data.letter} (${Math.round(data.confidence * 100)}%)`;
+                if (data.letter === "Waiting..." || data.letter === "Unsure") {
+                    currentLetter.textContent = data.letter;
+                } else {
+                    currentLetter.textContent =
+                        `${data.letter} (${Math.round(data.confidence * 100)}%)`;
+                }
 
                 document.getElementById(
                     'displayWord'
