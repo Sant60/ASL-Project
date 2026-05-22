@@ -9,7 +9,7 @@
         name="viewport"
         content="width=device-width, initial-scale=1.0"
     >
-
+    <link rel="icon" href="ASL-Logo.png">
     <title>ASL Detection</title>
 
     <link
@@ -18,7 +18,19 @@
     >
 
     <style>
+        .title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 28px;
+            font-weight: bold;
+        }
 
+        .logo {
+            width: 45px;
+            height: 45px;
+            object-fit: contain;
+        }
         body{
 
             margin:0;
@@ -210,7 +222,8 @@
     <div class="main-wrapper">
 
         <div class="title">
-            🖐 American Sign Language Detection
+            <img src="ASL-Logo.png" alt="ASL Logo" class="logo">
+            American Sign Language Detection
         </div>
 
         <div class="top-section">
