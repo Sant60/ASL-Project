@@ -322,8 +322,8 @@
                 video.srcObject = stream;
 
             }catch(error){
-
-                console.log(error);
+                // Fix: Changed console.log to console.error for proper error logging
+                console.error(error);
 
                 alert(
                     "Camera access denied"
