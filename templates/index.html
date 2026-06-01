@@ -17,6 +17,10 @@
         rel="stylesheet"
     >
 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
 
         body{
@@ -24,13 +28,18 @@
             margin:0;
             padding:0;
 
-            background:#0f172a;
+            background: linear-gradient(
+                135deg,
+                #0f172a,
+                #111827,
+                #1e293b
+            );
 
             color:white;
 
             overflow:hidden;
 
-            font-family:Arial,sans-serif;
+            font-family: 'Poppins', sans-serif;
         }
 
         .main-wrapper{
@@ -59,7 +68,10 @@
 
             flex:1.4;
 
-            background:#111827;
+            background: rgba(17,24,39,.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+            transition: .3s ease;
 
             border-radius:20px;
 
@@ -74,6 +86,16 @@
             justify-content:center;
         }
 
+        .camera-section,
+        .sign-section{
+            transform: translateY(0);
+        }
+
+        .camera-section:hover,
+        .sign-section:hover{
+            transform: translateY(-4px);
+        }
+
         video{
 
             width:100%;
@@ -85,7 +107,10 @@
 
             flex:1;
 
-            background:#111827;
+            background: rgba(17,24,39,.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,.35);
+            transition: .3s ease;
 
             border-radius:20px;
 
@@ -111,24 +136,37 @@
 
             margin-top:15px;
 
-            background:#111827;
+            background: rgba(17,24,39,.85);
+
+            backdrop-filter: blur(10px);
 
             border-radius:20px;
 
             padding:20px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,.3);
         }
 
         .title{
 
-            font-size:2rem;
+            font-size: 2.4rem;
+            font-weight: 700;
+            letter-spacing: .5px;
+            text-shadow:
+                0 0 20px rgba(56,189,248,.4);
 
-            font-weight:bold;
-
-            margin-bottom:15px;
+            margin-bottom:5px;
 
             text-align:center;
 
             color:#38bdf8;
+        }
+
+        .subtitle{
+            text-align: center;
+            color: #94a3b8;
+            margin-top: -10px;
+            margin-bottom: 15px;
         }
 
         .letter{
@@ -163,6 +201,15 @@
             padding:10px 18px;
 
             font-weight:bold;
+
+            transition: .25s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,.25);
+        }
+
+        .controls button:hover{
+            transform:
+                translateY(-2px)
+                scale(1.03);
         }
 
         @media(max-width:900px){
@@ -213,6 +260,10 @@
             🖐 American Sign Language Detection
         </div>
 
+        <p class="subtitle">
+            Real-Time Sign Language Recognition System
+        </p>
+
         <div class="top-section">
 
             <div class="camera-section">
@@ -241,8 +292,8 @@
 
             <div class="letter">
 
-                Current Letter :
-                <span id="currentLetter">
+                Detected Letter :
+                <span id="detectedLetter">
                     Waiting...
                 </span>
 
@@ -250,7 +301,7 @@
 
             <div class="word mt-3">
 
-                Word :
+                Recognized Word :
                 <span id="displayWord">
                     ...
                 </span>
@@ -262,6 +313,7 @@
                 <button
                     onclick="addLetter()"
                     class="btn btn-success"
+                    aria-label="Add Letter"
                 >
                     Add Letter
                 </button>
@@ -269,6 +321,7 @@
                 <button
                     onclick="undoLetter()"
                     class="btn btn-warning"
+                    aria-label="Undo Letter"
                 >
                     Undo
                 </button>
@@ -276,6 +329,7 @@
                 <button
                     onclick="resetWord()"
                     class="btn btn-danger"
+                    aria-label="Reset Word"
                 >
                     Reset
                 </button>
@@ -283,6 +337,7 @@
                 <button
                     onclick="speakWord()"
                     class="btn btn-info"
+                    aria-label="Speak Word"
                 >
                     Speak
                 </button>
@@ -306,8 +361,8 @@
         const canvas =
             document.getElementById('canvas');
 
-        const currentLetter =
-            document.getElementById('currentLetter');
+        const detectedLetter =
+            document.getElementById('detectedLetter');
 
 
         async function startCamera(){
@@ -376,7 +431,7 @@
 
             if(data.success){
 
-                currentLetter.textContent =
+                detectedLetter.textContent =
                     `${data.letter} (${Math.round(data.confidence * 100)}%)`;
 
                 document.getElementById(
