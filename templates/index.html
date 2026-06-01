@@ -252,9 +252,16 @@
 
                 Word :
                 <span id="displayWord">
-                    ...
+                   No letters detected yet.
                 </span>
 
+            </div>
+
+            <div class="instruction-box mt-2">
+                <p><strong>Instructions:</strong></p>
+                <p>👋 Show your hand to the camera.</p>
+                <p>➕ Click "Add Letter" to add the detected sign.</p>
+                <p>🔤 Build your word letter by letter.</p>
             </div>
 
             <div class="controls">
@@ -395,7 +402,7 @@
 
                     document.getElementById(
                         'displayWord'
-                    ).textContent = data.word;
+                    ).textContent = data.word && data.word.trim()!==""? data.word:"No letters detectded yet.";
 
                 });
         }
