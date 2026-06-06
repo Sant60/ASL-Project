@@ -81,32 +81,6 @@
             object-fit:cover;
         }
 
-        .sign-section{
-
-            flex:1;
-
-            background:#111827;
-
-            border-radius:20px;
-
-            border:3px solid #2563eb;
-
-            display:flex;
-
-            align-items:center;
-
-            justify-content:center;
-
-            overflow:hidden;
-        }
-
-        .sign-section img{
-
-            width:100%;
-            height:100%;
-            object-fit:contain;
-        }
-
         .bottom-section{
 
             margin-top:15px;
@@ -201,6 +175,227 @@
             }
         }
 
+        /* Two-Way Accessibility Features */
+        .sign-section {
+            flex: 1;
+            background: #111827;
+            border-radius: 20px;
+            border: 3px solid #2563eb;
+            display: flex;
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            overflow: hidden;
+        }
+
+        .custom-tabs {
+            border-bottom: 2px solid #1e293b;
+            padding: 5px 10px 0;
+            background: #0f172a;
+            display: flex;
+            gap: 10px;
+        }
+        .custom-tabs .nav-link {
+            color: #9ca3af;
+            border: none;
+            font-weight: 600;
+            padding: 8px 16px;
+            background: transparent;
+            font-size: 0.95rem;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            outline: none;
+        }
+        .custom-tabs .nav-link:hover {
+            color: #f3f4f6;
+        }
+        .custom-tabs .nav-link.active {
+            color: #38bdf8;
+            border-bottom: 3px solid #38bdf8;
+            border-radius: 0;
+        }
+
+        .tab-pane {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+        .tab-pane.show.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .translator-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-height: 0;
+            background: #111827;
+        }
+
+        .btn-mic {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            color: #ef4444;
+            border: 2px solid #ef4444;
+            background: transparent;
+            cursor: pointer;
+        }
+        .btn-mic:hover {
+            background: rgba(239, 68, 68, 0.1);
+        }
+        .btn-mic.listening {
+            background-color: #ef4444;
+            color: white;
+            border-color: #ef4444;
+            box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            animation: pulse-mic 1.5s infinite;
+        }
+        @keyframes pulse-mic {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 10px rgba(239, 68, 68, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+            }
+        }
+
+        .transcript-box {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #1e293b;
+            color: #f1f5f9;
+            min-height: 55px;
+            max-height: 55px;
+            overflow-y: auto;
+            border: 1px solid #334155;
+            border-radius: 10px;
+            padding: 8px 12px;
+            font-size: 0.9rem;
+            text-align: left;
+        }
+
+        .sign-translation-wrapper {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            flex-grow: 1;
+        }
+
+        .sign-gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            overflow-y: auto;
+            align-content: flex-start;
+            flex-grow: 1;
+            padding-top: 4px;
+        }
+
+        .sign-card {
+            width: 55px;
+            height: 75px;
+            background: #0f172a;
+            border: 1px solid #475569;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            animation: popIn 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        .sign-card img {
+            width: 100%;
+            height: 70%;
+            object-fit: contain;
+        }
+        .sign-card .sign-label {
+            font-size: 0.7rem;
+            font-weight: bold;
+            color: #38bdf8;
+            margin-top: 2px;
+        }
+
+        .sign-space-card {
+            width: 30px;
+            height: 75px;
+            background: rgba(71, 85, 105, 0.15);
+            border: 1px dashed #475569;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        @keyframes popIn {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .tts-settings-toggle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            margin: 5px;
+            border: 2px solid #0dcaf0;
+            background: transparent;
+            color: #0dcaf0;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .tts-settings-toggle:hover, .tts-settings-toggle.active {
+            background: #0dcaf0;
+            color: #000;
+        }
+
+        .tts-settings-panel {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: left;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .tts-settings-panel .form-label {
+            color: #94a3b8;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+        }
+        .tts-settings-panel .form-range {
+            accent-color: #0dcaf0;
+        }
+
     </style>
 
 </head>
@@ -227,12 +422,46 @@
             </div>
 
             <div class="sign-section">
-
-                <img
-                    src="{{ url_for('static', filename='Images/Sign.jpg') }}"
-                    alt="Signs"
-                >
-
+                <!-- Custom Vanilla Tabs -->
+                <div class="custom-tabs" role="tablist">
+                    <button class="nav-link active" id="reference-tab" data-bs-target="#reference-pane" role="tab" aria-selected="true">Alphabet Reference</button>
+                    <button class="nav-link" id="translator-tab" data-bs-target="#translator-pane" role="tab" aria-selected="false">Speech-to-Sign</button>
+                </div>
+                
+                <div class="tab-content flex-grow-1 d-flex flex-column" style="min-height: 0; width: 100%;">
+                    <!-- Reference Pane -->
+                    <div class="tab-pane show active" id="reference-pane" role="tabpanel" aria-labelledby="reference-tab">
+                        <img
+                            src="{{ url_for('static', filename='Images/Sign.jpg') }}"
+                            alt="Signs Reference Sheet"
+                            style="width: 100%; height: 100%; object-fit: contain;"
+                        >
+                    </div>
+                    
+                    <!-- Translator Pane -->
+                    <div class="tab-pane" id="translator-pane" role="tabpanel" aria-labelledby="translator-tab">
+                        <div class="translator-container p-3 d-flex flex-column h-100">
+                            <div class="d-flex align-items-center justify-content-between mb-2">
+                                <span class="badge bg-secondary" id="rec-status">Speech Engine: Ready</span>
+                                <button id="mic-btn" class="btn-mic" aria-label="Start Speech-to-Sign Microphone Translation">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-mic-fill" viewBox="0 0 16 16">
+                                        <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z"/>
+                                        <path d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z"/>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="transcript-box mb-2" id="transcript-text" aria-live="polite">
+                                Click the microphone icon to begin speaking. Spoken words will translate into sign shapes below.
+                            </div>
+                            <div class="sign-translation-wrapper flex-grow-1">
+                                <div class="text-secondary small mb-1">ASL Translation Gallery:</div>
+                                <div class="sign-gallery" id="sign-gallery-output">
+                                    <!-- Sign cards will appear here dynamically -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -240,58 +469,94 @@
         <div class="bottom-section text-center">
 
             <div class="letter">
-
-                Current Letter :
-                <span id="currentLetter">
+                Current Letter:
+                <span id="currentLetter" aria-live="polite">
                     Waiting...
                 </span>
-
             </div>
 
             <div class="word mt-3">
-
-                Word :
-                <span id="displayWord">
+                Word:
+                <span id="displayWord" aria-live="polite">
                     ...
                 </span>
-
             </div>
 
-            <div class="controls">
+            <div class="controls d-flex justify-content-center align-items-center flex-wrap">
 
                 <button
                     onclick="addLetter()"
-                    class="btn btn-success"
+                    class="btn btn-success m-1"
+                    aria-label="Add detected letter to word buffer"
                 >
                     Add Letter
                 </button>
 
                 <button
                     onclick="undoLetter()"
-                    class="btn btn-warning"
+                    class="btn btn-warning m-1"
+                    aria-label="Undo last letter"
                 >
                     Undo
                 </button>
 
                 <button
                     onclick="resetWord()"
-                    class="btn btn-danger"
+                    class="btn btn-danger m-1"
+                    aria-label="Reset word buffer"
                 >
                     Reset
                 </button>
 
                 <button
                     onclick="speakWord()"
-                    class="btn btn-info"
+                    class="btn btn-info m-1"
+                    aria-label="Speak word"
                 >
                     Speak
                 </button>
 
+                <button
+                    id="tts-settings-btn"
+                    class="tts-settings-toggle m-1"
+                    aria-label="Configure speech settings"
+                    aria-expanded="false"
+                >
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                </button>
+
+            </div>
+
+            <!-- Voice Settings Panel -->
+            <div id="tts-settings-panel" class="tts-settings-panel" style="display: none;">
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="voice-select" class="form-label">Voice Profile</label>
+                        <select id="voice-select" class="form-select bg-dark text-white border-secondary"></select>
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tts-rate" class="form-label">Speed (Rate): <span id="rate-value">1.0</span>x</label>
+                        <input type="range" class="form-range" id="tts-rate" min="0.5" max="2" step="0.1" value="1.0">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="tts-pitch" class="form-label">Pitch: <span id="pitch-value">1.0</span></label>
+                        <input type="range" class="form-range" id="tts-pitch" min="0.5" max="2" step="0.1" value="1.0">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Shortcut Keys Legend -->
+            <div class="mt-4 text-secondary small">
+                <span class="badge bg-dark border border-secondary text-secondary me-2 p-2">Keyboard Shortcuts</span>
+                <kbd class="bg-dark text-white border border-secondary px-2 py-1">A</kbd> Add Letter &nbsp;
+                <kbd class="bg-dark text-white border border-secondary px-2 py-1">U</kbd> Undo &nbsp;
+                <kbd class="bg-dark text-white border border-secondary px-2 py-1">R</kbd> Reset &nbsp;
+                <kbd class="bg-dark text-white border border-secondary px-2 py-1">S</kbd> Speak
             </div>
 
         </div>
-
-    </div>
 
     <canvas
         id="canvas"
@@ -425,26 +690,229 @@
         }
 
 
-        function speakWord(){
+        // Customizable TTS Controls
+        const ttsBtn = document.getElementById('tts-settings-btn');
+        const ttsPanel = document.getElementById('tts-settings-panel');
+        const voiceSelect = document.getElementById('voice-select');
+        const ttsRate = document.getElementById('tts-rate');
+        const ttsPitch = document.getElementById('tts-pitch');
+        const rateValue = document.getElementById('rate-value');
+        const pitchValue = document.getElementById('pitch-value');
 
+        // Toggle Settings Panel
+        ttsBtn.addEventListener('click', () => {
+            const isVisible = ttsPanel.style.display !== 'none';
+            ttsPanel.style.display = isVisible ? 'none' : 'block';
+            ttsBtn.setAttribute('aria-expanded', !isVisible);
+            ttsBtn.classList.toggle('active');
+        });
+
+        // Update Slider Labels
+        ttsRate.addEventListener('input', () => {
+            rateValue.textContent = parseFloat(ttsRate.value).toFixed(1);
+        });
+        ttsPitch.addEventListener('input', () => {
+            pitchValue.textContent = parseFloat(ttsPitch.value).toFixed(1);
+        });
+
+        // Load voices dynamically
+        let synthVoices = [];
+        function populateVoices() {
+            if (typeof speechSynthesis === 'undefined') return;
+            synthVoices = window.speechSynthesis.getVoices();
+            
+            voiceSelect.innerHTML = '';
+            
+            // Prioritize English voices since ASL is English-based
+            const englishVoices = synthVoices.filter(v => v.lang.startsWith('en'));
+            const list = englishVoices.length > 0 ? englishVoices : synthVoices;
+
+            list.forEach((voice, index) => {
+                const option = document.createElement('option');
+                option.textContent = `${voice.name} (${voice.lang})`;
+                if (voice.default) {
+                    option.textContent += ' [Default]';
+                }
+                option.setAttribute('data-lang', voice.lang);
+                option.setAttribute('data-name', voice.name);
+                voiceSelect.appendChild(option);
+            });
+        }
+
+        populateVoices();
+        if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = populateVoices;
+        }
+
+        function speakWord(){
             fetch('/get_word')
                 .then(res => res.json())
                 .then(data => {
-
-                    const msg =
-                        new SpeechSynthesisUtterance(
-                            data.word
-                        );
+                    if (!data.word) return;
+                    
+                    window.speechSynthesis.cancel(); // cancel any active utterance
+                    
+                    const msg = new SpeechSynthesisUtterance(data.word);
+                    
+                    if (voiceSelect.value) {
+                        const selectedOption = voiceSelect.options[voiceSelect.selectedIndex];
+                        const voiceName = selectedOption.getAttribute('data-name');
+                        const matchedVoice = synthVoices.find(v => v.name === voiceName);
+                        if (matchedVoice) {
+                            msg.voice = matchedVoice;
+                        }
+                    }
+                    msg.rate = parseFloat(ttsRate.value) || 1.0;
+                    msg.pitch = parseFloat(ttsPitch.value) || 1.0;
 
                     window.speechSynthesis.speak(msg);
-
                 });
+        }
+
+
+        // Custom Vanilla Tab Swapping
+        const tabButtons = document.querySelectorAll('.custom-tabs button');
+        tabButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                tabButtons.forEach(b => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+
+                document.querySelectorAll('.tab-pane').forEach(pane => {
+                    pane.classList.remove('show', 'active');
+                });
+
+                const targetPane = document.querySelector(btn.getAttribute('data-bs-target'));
+                if (targetPane) {
+                    targetPane.classList.add('show', 'active');
+                }
+            });
+        });
+
+
+        // Speech-to-Sign Web Speech API Integration
+        let recognition = null;
+        let isListening = false;
+        const micBtn = document.getElementById('mic-btn');
+        const recStatus = document.getElementById('rec-status');
+        const transcriptText = document.getElementById('transcript-text');
+        const signGallery = document.getElementById('sign-gallery-output');
+
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            recStatus.textContent = "Speech Engine: Not Supported";
+            recStatus.className = "badge bg-danger";
+            micBtn.disabled = true;
+        } else {
+            recognition = new SpeechRecognition();
+            recognition.continuous = true;
+            recognition.interimResults = true;
+            recognition.lang = 'en-US';
+
+            recognition.onstart = () => {
+                isListening = true;
+                micBtn.classList.add('listening');
+                recStatus.textContent = "Speech Engine: Listening...";
+                recStatus.className = "badge bg-danger";
+            };
+
+            recognition.onend = () => {
+                isListening = false;
+                micBtn.classList.remove('listening');
+                recStatus.textContent = "Speech Engine: Ready";
+                recStatus.className = "badge bg-secondary";
+            };
+
+            recognition.onerror = (event) => {
+                console.error("Speech recognition error:", event.error);
+                isListening = false;
+                micBtn.classList.remove('listening');
+                recStatus.textContent = "Speech Engine: Error";
+                recStatus.className = "badge bg-danger";
+            };
+
+            recognition.onresult = (event) => {
+                let interimTranscript = '';
+                let finalTranscript = '';
+
+                for (let i = event.resultIndex; i < event.results.length; ++i) {
+                    if (event.results[i].isFinal) {
+                        finalTranscript += event.results[i][0].transcript;
+                    } else {
+                        interimTranscript += event.results[i][0].transcript;
+                    }
+                }
+
+                const currentTranscript = finalTranscript || interimTranscript;
+                if (currentTranscript.trim()) {
+                    transcriptText.textContent = currentTranscript;
+                    updateSignGallery(currentTranscript);
+                }
+            };
+        }
+
+        micBtn.addEventListener('click', () => {
+            if (!recognition) return;
+            if (isListening) {
+                recognition.stop();
+            } else {
+                transcriptText.textContent = "Listening...";
+                recognition.start();
+            }
+        });
+
+        function updateSignGallery(text) {
+            signGallery.innerHTML = '';
+            const normalizedText = text.toUpperCase();
+            
+            for (let i = 0; i < normalizedText.length; i++) {
+                const char = normalizedText[i];
+                if (char >= 'A' && char <= 'Z') {
+                    const card = document.createElement('div');
+                    card.className = 'sign-card';
+                    
+                    const img = document.createElement('img');
+                    img.src = `https://raw.githubusercontent.com/MiteshJain8/learnix/main/public/images/handGestures/${char}.png`;
+                    img.alt = `ASL sign for ${char}`;
+                    img.onerror = () => {
+                        img.style.display = 'none';
+                        const errSymbol = document.createElement('span');
+                        errSymbol.textContent = '⚠️';
+                        card.insertBefore(errSymbol, card.firstChild);
+                    };
+                    
+                    const label = document.createElement('span');
+                    label.className = 'sign-label';
+                    label.textContent = char;
+                    
+                    card.appendChild(img);
+                    card.appendChild(label);
+                    signGallery.appendChild(card);
+                } else if (char === ' ') {
+                    const spaceCard = document.createElement('div');
+                    spaceCard.className = 'sign-space-card';
+                    spaceCard.textContent = '␣';
+                    spaceCard.title = 'Space';
+                    signGallery.appendChild(spaceCard);
+                }
+            }
         }
 
 
         document.addEventListener(
             'keydown',
             function(event){
+                // Disable shortcuts if typing in input/select elements
+                if (document.activeElement && 
+                    (document.activeElement.tagName === 'INPUT' || 
+                     document.activeElement.tagName === 'SELECT' || 
+                     document.activeElement.tagName === 'TEXTAREA')) {
+                    return;
+                }
 
                 const key =
                     event.key.toLowerCase();
