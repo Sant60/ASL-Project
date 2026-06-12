@@ -186,14 +186,16 @@ def predict():
 
 @app.route('/add_letter', methods=['POST'])
 def add_letter():
-
     global word
-    global current_letter
 
-    if current_letter:
-        word += current_letter
+    data = request.get_json()
 
-    return "OK"
+    letter = data.get("letter", "")
+
+    if letter:
+        word += letter
+
+    return jsonify(success=True)
 
 
 @app.route('/undo_letter', methods=['POST'])

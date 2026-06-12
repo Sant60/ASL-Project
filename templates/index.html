@@ -403,10 +403,24 @@
 
         function addLetter(){
 
-            fetch('/add_letter',{
-                method:'POST'
-            }).then(updateWord);
-        }
+    const displayedLetter =
+        currentLetter.textContent
+            .split(' ')[0];
+
+    fetch('/add_letter',{
+
+        method:'POST',
+
+        headers:{
+            'Content-Type':'application/json'
+        },
+
+        body:JSON.stringify({
+            letter: displayedLetter
+        })
+
+    }).then(updateWord);
+}
 
 
         function undoLetter(){
